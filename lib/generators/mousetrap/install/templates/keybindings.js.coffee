@@ -24,7 +24,9 @@ handleKeyBindings = ->
   # Hotkey binding to inputs with 'data-keybinding' attribute
   # Focus input when hotkey pressed
   $('input[data-keybinding]').each (i, el) ->
-    Mousetrap.bind $(el).data('keybinding'), (e) ->
+    bindedKey = $(el).data('keybinding')
+    bindedKey = bindedKey.toString() if typeof(bindedKey) == 'number'
+    Mousetrap.bind bindedKey, (e) ->
       el.focus()
       if e.preventDefault
         e.preventDefault()
